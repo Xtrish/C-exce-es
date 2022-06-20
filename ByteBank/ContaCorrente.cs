@@ -1,5 +1,7 @@
 ﻿// using _05_ByteBank;
 
+using System;
+
 namespace ByteBank
 {
     public class ContaCorrente
@@ -17,7 +19,7 @@ namespace ByteBank
             {
                 return _agencia;
             }
-            set
+            private set
             {
                 if (value <= 0)
                 {
@@ -27,7 +29,7 @@ namespace ByteBank
                 _agencia = value;
             }
         }
-        public int Numero { get; set; }
+        public int Numero { get;}
 
         private double _saldo = 100;
 
@@ -54,8 +56,17 @@ namespace ByteBank
             Agencia = agencia;
             Numero = numero;
 
-            TaxaOperacao = 30 / TotalDeContasCriadas;
-            TotalDeContasCriadas++;
+
+            //TaxaOperacao = 30 / TotalDeContasCriadas;
+
+            if (agencia <= 0)
+            {
+                throw new ArgumentException("O argumeto agencia deve ser maior que 0.", nameof(agencia));
+            } if (numero <= 0)
+            {
+                throw new ArgumentException("O argumeto numero deve ser maior que 0.", nameof(numero));
+            }
+                TotalDeContasCriadas++;
         }
 
 

@@ -9,14 +9,27 @@ namespace ByteBank
     class Program
     {
         static void Main(string[] args)
+
+
         {
-            ContaCorrente conta = new ContaCorrente(8542, 357684);
+            try
+            {
+                ContaCorrente conta = new ContaCorrente(0, 0);
 
-             Console.WriteLine(ContaCorrente.TaxaOperacao);
+                //Console.WriteLine(ContaCorrente.TaxaOperacao);
 
-        
+                Console.ReadLine();
 
-            Console.ReadLine();
+            }catch(ArgumentException ex){
+                Console.WriteLine("Erro no paramentro: "+ex.ParamName);
+                Console.WriteLine(ex.Message);
+                //Console.WriteLine("Ocorreu um erro do tipo ArgumentException");
+                
+
+                Console.ReadLine();
+
+            }
         }
+        
     }
 }
