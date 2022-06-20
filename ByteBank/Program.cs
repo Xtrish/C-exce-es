@@ -9,37 +9,38 @@ namespace ByteBank
     class Program
     {
         static void Main(string[] args)
-
-
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(8541, 23652);
+                ContaCorrente conta = new ContaCorrente(5265, 52665);
+                ContaCorrente conta2 = new ContaCorrente(5245, 52425);
+
                 conta.Depositar(50);
                 Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
+                //conta.Sacar(500);
+                conta.Transferir(500, conta2);
                 Console.WriteLine(conta.Saldo);
-               
-
-                //Console.WriteLine(ContaCorrente.TaxaOperacao);
-
-                Console.ReadLine();
-
             }
             catch (ArgumentException ex)
             {
-                Console.WriteLine("Erro no paramentro: " + ex.ParamName);
+                Console.WriteLine("Erro no parâmetro: " + ex.ParamName);
+                Console.WriteLine("Ocorreu um erro do tipo ArgumentException.");
+                Console.WriteLine(ex.StackTrace);
                 Console.WriteLine(ex.Message);
-                //Console.WriteLine("Ocorreu um erro do tipo ArgumentException");              
-                
             }
-            catch (SaldoInsuficienteException ex)
+            catch (OperacaoFinanceiraException ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("Exceção do tipo SaldoInsuficienteException");
+                Console.WriteLine(ex.StackTrace);
+
+                Console.WriteLine("Informações da INNER EXCEPTION (exceção interna):");
+
+                Console.WriteLine(ex.InnerException.Message);
+                Console.WriteLine(ex.InnerException.StackTrace);
             }
+            //Metodo();
             Console.ReadLine();
         }
-        
     }
 }
+
